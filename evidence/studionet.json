@@ -59,15 +59,15 @@
       "status": "FINALIZED",
       "execution": "SUCCESS"
     },
-    "stale_route": {
-      "hash": "0xea1bd4d7ff798de267647a4f29cf499ed5d46bac3d0aaf4bd14ba31485776169",
-      "status": "FINALIZED",
-      "execution": "ERROR"
-    },
-    "route_active": {
+    "route_active_trial_3": {
       "hash": "0xa402e2f927784dd91566c43ede909f1cf59fe53c78ed5330f02907a9320fd3cc",
       "status": "FINALIZED",
       "execution": "SUCCESS"
+    },
+    "stale_route_trial_3": {
+      "hash": "0xea1bd4d7ff798de267647a4f29cf499ed5d46bac3d0aaf4bd14ba31485776169",
+      "status": "FINALIZED",
+      "execution": "ERROR"
     }
   },
   "readback": {
@@ -209,5 +209,15 @@
   "dispatchDemo": {
     "owner": "0x07219108199e3C6A6e162d6E80860a0747302e1B",
     "candidate": "0xf14049C2Ae45d00ee76a18917e1bcCfaBee50D3c"
+  },
+  "evidenceGaps": {
+    "ticket1DispatchTransaction": {
+      "status": "NOT_PRESERVED",
+      "reason": "The first dispatch transaction hash was overwritten when the later dispatch verification reused the route_active evidence key. No replacement hash is inferred.",
+      "stateReadback": "The earlier run asserted get_ticket(1) queue INCIDENT, but its readback object was later overwritten by the second run."
+    },
+    "ticket2DispatchTransaction": "route_active_trial_3",
+    "ticket2StaleRevisionTransaction": "stale_route_trial_3",
+    "trial3Readback": "Not included in the existing evidence snapshot; retrieve with the read-only verification script."
   }
 }

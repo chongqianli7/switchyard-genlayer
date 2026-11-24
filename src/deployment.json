@@ -31,20 +31,15 @@
     ]
   },
   "tickets": {
-    "2": "0xa402e2f927784dd91566c43ede909f1cf59fe53c78ed5330f02907a9320fd3cc"
+    "1": "0xa402e2f927784dd91566c43ede909f1cf59fe53c78ed5330f02907a9320fd3cc"
   },
   "ticketEvidence": {
     "1": {
-      "status": "FINALIZED_STATE_ASSERTION_IN_PRIOR_RUN",
-      "transactionHash": null,
-      "queue": "INCIDENT",
-      "revision": 1
-    },
-    "2": {
       "status": "FINALIZED",
       "transactionHash": "0xa402e2f927784dd91566c43ede909f1cf59fe53c78ed5330f02907a9320fd3cc",
-      "queue": "INCIDENT",
-      "revision": 3
+      "trialId": 3,
+      "revision": 3,
+      "queue": "INCIDENT"
     }
   }
 }

@@ -17,7 +17,7 @@ The contract partitions active revisions by owner. Submissions and evaluations a
 
 Use Node.js 24, then run `npm ci` and `npm run dev`. The app reads finalized state and sends transactions only to GenLayer Stable Studionet, chain 61999. Connect MetaMask or OKX Wallet, or create two session-only demo wallets and fund them using the Studio faucet.
 
-`node scripts/verify.mjs` deploys a fresh contract and exercises the normal, regression, and unauthorized paths with in-memory test accounts. It writes receipts and readbacks under `evidence/`.
+`node scripts/verify.mjs` deploys a fresh contract. Do not run it against an existing deployment when preserving the current address and history. `node scripts/verify-dispatch.mjs` is a separate transaction-producing scenario and must not be rerun against the recorded evidence. `node scripts/verify-readback.mjs` is read-only: it checks existing trials, tickets, active revision, and preserved receipts without submitting transactions.
 
 ## Validation
 

@@ -1,18 +1,18 @@
 # Switchyard validation
 
-The deployment and lifecycle tests used GenLayer Stable Studionet (61999) and two independent in-memory test wallets. [Receipts and finalized readbacks](studionet.json) preserve the transaction IDs that remain available and the contract outputs. Prefix a transaction ID with `https://explorer-studio.genlayer.com/transactions/` to open the corresponding receipt.
+The deployment and lifecycle tests used GenLayer Stable Studionet (61999) and independent in-memory test wallets. [Receipts and finalized readbacks](studionet.json) preserve the deployment, trial, rejection, stale-revision, and successful dispatch evidence. Prefix a transaction ID with `https://explorer-studio.genlayer.com/transactions/` to open its receipt.
 
 [Source comparison](source-match.json) was made against the deployment transaction payload. [Official GenVM checks](genvm-lint.txt) were run against the same bytes. The Python SDK dependency is pinned in the source header.
 
-## Read-only verification
+## Live read-only verification
 
-Run `node scripts/verify-readback.mjs` to query every existing trial and ticket, check the active revision, and re-check the preserved transaction receipts. This script does not deploy a contract or submit a transaction.
+The GitHub Actions validation workflow runs `npm run verify:readback` after unit tests and the production build. This script submits no transactions. It reads all existing trials and tickets from Studionet, checks active revisions, and rechecks each preserved transaction receipt. The successful audit artifact records the full live readback.
+
+The verified state contains three trials: Trial 1 PROMOTED, Trial 2 REJECTED, and Trial 3 PROMOTED. The original desk owner's active revision is 1; the separate dispatch desk's active revision is 3. The contract currently contains one dispatch record: Ticket 1, created by Trial 3 using Revision 3, routed to INCIDENT.
 
 ## Evidence limitation
 
-The original successful dispatch transaction hash for Ticket 1 was overwritten when the later dispatch verification reused the `route_active` evidence key. The current evidence therefore does not claim a transaction hash for Ticket 1. The first run's script asserted that Ticket 1 was stored in the INCIDENT queue under revision 1, but its readback object was subsequently replaced by the Ticket 2 readback. Ticket 2's successful dispatch hash is preserved separately as `route_active_trial_3`. No missing hash or readback has been reconstructed.
-
-The second dispatch scenario creates Trial 3 and Ticket 2. Its preserved transaction records are named `dispatch_trial_open`, `dispatch_trial_submit`, `dispatch_trial_evaluate`, `stale_route_trial_3`, and `route_active_trial_3`. Run the read-only verification script to obtain the full Trial 3 state directly from Studionet.
+An earlier `route_active` evidence key was overwritten when the later dispatch verification reused the same key. Its earlier transaction hash is not retained and is not reconstructed. The current live contract has one dispatch record, Ticket 1 under Revision 3. No separate Revision 1 dispatch is claimed. The retained `route_active_trial_3` receipt is the verified transaction for the current Ticket 1.
 
 ## Browser checks
 

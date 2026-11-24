@@ -1,3 +1,36 @@
 {
-  "address": "0x3a44e9E866dE0811aeAb81a6CA2BDDEBfa08efAF"
+  "address": "0x3a44e9E866dE0811aeAb81a6CA2BDDEBfa08efAF",
+  "trials": {
+    "1": [
+      [
+        "Trial opened",
+        "0xc04ffa55c03b890f376e688e9f9e7be287a758098665e869dcdb52283e53c250"
+      ],
+      [
+        "Playbook submitted",
+        "0xd0303ded1c1d197dda4afbd33b38312968fe27073fa4e22ab578f15c197a6f70"
+      ],
+      [
+        "Consensus evaluation",
+        "0x66f97eb787b9c41de2a534c52b5abcf33248471094716059f7bdc514a092aced"
+      ]
+    ],
+    "2": [
+      [
+        "Trial opened",
+        "0xaffa88a34641edccd10f64bb7be8ce84559231a179fc189af13ad703f5e24d12"
+      ],
+      [
+        "Playbook submitted",
+        "0xfb483cd1e8c020a47ebfa5e085866578076cf5ee8945191b20234f175c0bf6b5"
+      ],
+      [
+        "Consensus evaluation",
+        "0x1a2c162675d0be9b0bb94fa01729d62cf702db76fba79ec0dc867239bad24b81"
+      ]
+    ]
+  },
+  "tickets": {
+    "1": "0xa402e2f927784dd91566c43ede909f1cf59fe53c78ed5330f02907a9320fd3cc"
+  }
 }

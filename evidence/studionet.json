@@ -1,0 +1,213 @@
+{
+  "chainId": 61999,
+  "sourceSha256": "be115ed882cec5305680d073d82575a39984145ee3e1247773d2cebef14e9312",
+  "owner": "0x8fD0cA8792ab4FAA4573AC3b3A42b4a233890405",
+  "candidate": "0xb4d9fE8bcbF29a303420514d541e65A59725714E",
+  "transactions": {
+    "deploy": {
+      "hash": "0x0aa0dfa8347cb61709c2dbd0d0a79cdc78edf0212dbfe7271c294b30616c2691",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "open_1": {
+      "hash": "0xc04ffa55c03b890f376e688e9f9e7be287a758098665e869dcdb52283e53c250",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "unauthorized_submission": {
+      "hash": "0x350948d58287fc74cc500cc02057daf00209333e8166da20d13e015333252a97",
+      "status": "FINALIZED",
+      "execution": "ERROR"
+    },
+    "submit_1": {
+      "hash": "0xd0303ded1c1d197dda4afbd33b38312968fe27073fa4e22ab578f15c197a6f70",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "evaluate_1": {
+      "hash": "0x66f97eb787b9c41de2a534c52b5abcf33248471094716059f7bdc514a092aced",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "open_2": {
+      "hash": "0xaffa88a34641edccd10f64bb7be8ce84559231a179fc189af13ad703f5e24d12",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "submit_2": {
+      "hash": "0xfb483cd1e8c020a47ebfa5e085866578076cf5ee8945191b20234f175c0bf6b5",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "evaluate_2": {
+      "hash": "0x1a2c162675d0be9b0bb94fa01729d62cf702db76fba79ec0dc867239bad24b81",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "dispatch_trial_open": {
+      "hash": "0x6eea10075d959a8e7cdbe6da6c8d77ad2c0b719d3dcbf9c51ef7a88ba9e840f8",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "dispatch_trial_submit": {
+      "hash": "0x34daa19130a950635ba0e1339eb172ffc7b37b8fd51ea3d0d3bacc0003b94b5f",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "dispatch_trial_evaluate": {
+      "hash": "0x55cda3ff2ff0ead47e2106b8c2579b4d2db667e25c650d8c65cea2ddb0e47093",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "stale_route": {
+      "hash": "0xea1bd4d7ff798de267647a4f29cf499ed5d46bac3d0aaf4bd14ba31485776169",
+      "status": "FINALIZED",
+      "execution": "ERROR"
+    },
+    "route_active": {
+      "hash": "0xa402e2f927784dd91566c43ede909f1cf59fe53c78ed5330f02907a9320fd3cc",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    }
+  },
+  "readback": {
+    "trial_1": {
+      "base_revision": 0,
+      "candidate": "0xb4d9fe8bcbf29a303420514d541e65a59725714e",
+      "cases": "[[\"All customers receive server errors and cannot sign in.\",\"INCIDENT\"],[\"Where can I download last month’s invoice?\",\"SUPPORT\"]]",
+      "owner": "0x8fd0ca8792ab4faa4573ac3b3a42b4a233890405",
+      "playbook": "Route a widespread outage or an all-customer login failure to INCIDENT. Route invoice downloads and routine billing requests to SUPPORT.",
+      "status": "PROMOTED",
+      "trace": "[\"INCIDENT\", \"SUPPORT\"]"
+    },
+    "active": 1,
+    "trial_2": {
+      "base_revision": 1,
+      "candidate": "0xb4d9fe8bcbf29a303420514d541e65a59725714e",
+      "cases": "[[\"All customers receive server errors and cannot sign in.\",\"INCIDENT\"],[\"Where can I download last month’s invoice?\",\"SUPPORT\"]]",
+      "owner": "0x8fd0ca8792ab4faa4573ac3b3a42b4a233890405",
+      "playbook": "Route every ticket to SUPPORT, including widespread outages, unavailable login, and invoice downloads. Never use INCIDENT.",
+      "status": "REJECTED",
+      "trace": "[\"SUPPORT\", \"SUPPORT\"]"
+    },
+    "dispatchRevision": 3,
+    "ticket": [
+      "0x07219108199e3C6A6e162d6E80860a0747302e1B",
+      3,
+      "All customers cannot sign in due to server errors.",
+      "INCIDENT"
+    ]
+  },
+  "schema": {
+    "ctor": {
+      "params": [],
+      "kwparams": {}
+    },
+    "methods": {
+      "active_revision": {
+        "params": [
+          [
+            "owner",
+            "address"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "int"
+      },
+      "evaluate": {
+        "params": [
+          [
+            "trial_id",
+            "int"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "any",
+        "payable": false
+      },
+      "get_ticket": {
+        "params": [
+          [
+            "ticket_id",
+            "int"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "string"
+      },
+      "get_trial": {
+        "params": [
+          [
+            "trial_id",
+            "int"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "dict"
+      },
+      "open_trial": {
+        "params": [
+          [
+            "candidate",
+            "address"
+          ],
+          [
+            "cases",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "any",
+        "payable": false
+      },
+      "route": {
+        "params": [
+          [
+            "expected_revision",
+            "int"
+          ],
+          [
+            "ticket",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "any",
+        "payable": false
+      },
+      "submit": {
+        "params": [
+          [
+            "trial_id",
+            "int"
+          ],
+          [
+            "playbook",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "any",
+        "payable": false
+      },
+      "totals": {
+        "params": [],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "array"
+      }
+    }
+  },
+  "address": "0x3a44e9E866dE0811aeAb81a6CA2BDDEBfa08efAF",
+  "dispatchDemo": {
+    "owner": "0x07219108199e3C6A6e162d6E80860a0747302e1B",
+    "candidate": "0xf14049C2Ae45d00ee76a18917e1bcCfaBee50D3c"
+  }
+}

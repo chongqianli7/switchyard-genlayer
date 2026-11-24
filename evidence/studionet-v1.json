@@ -1,0 +1,25 @@
+{
+  "chainId": 61999,
+  "sourceSha256": "60b98ae22fb72c002d4c0435b46c549d9cf7831a1acb588c75cb846d7c1ac7cd",
+  "owner": "0xa078c4535D160E492DF30584A1cB883dB7A79DBc",
+  "candidate": "0x57115213Ae87Bf815E14C4c1011F67a4A0A9f8D7",
+  "transactions": {
+    "deploy": {
+      "hash": "0xb8de5dca238e10753226cd303a01638b881ec77888c963027165aaa170d62615",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "open_1": {
+      "hash": "0x4ddc34843ccb2bee22fec97660ac3a6e748aef830f3d726987adc80ff65219b3",
+      "status": "FINALIZED",
+      "execution": "ERROR"
+    }
+  },
+  "readback": {},
+  "address": "0x5609636383D91605F5BC8FA9a89a4BED1F39106D",
+  "rootCause": "The runtime decoded the candidate address as a string. Storage required an Address instance. The current contract normalizes it before storage.",
+  "earlierFeeRejection": {
+    "evmHash": "0xd7432684ffedc401cb0f40fe026a52a8bbba775001a75fee0f10eb7d34f31124",
+    "reason": "FeeValueMustBeNonZero(1)"
+  }
+}

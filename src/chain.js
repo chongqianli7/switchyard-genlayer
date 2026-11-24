@@ -23,8 +23,12 @@ export function wait(hash) {
 }
 export function execution(receipt) {
   const leaders = receipt.consensus_data?.leader_receipt;
-  return (Array.isArray(leaders) ? leaders.at(-1) : leaders)?.execution_result ??
-    receipt.txExecutionResultName ?? String(receipt.txExecutionResult ?? 'UNKNOWN');
+  const leader = Array.isArray(leaders) ? leaders.find(entry => entry.mode === 'leader') : leaders;
+  // Studio can mix validator receipts into this field. Its top-level result
+  // is authoritative and is not affected by idle validators after quorum.
+  if (receipt.txExecutionResultName === 'FINISHED_WITH_RETURN') return 'SUCCESS';
+  return leader?.execution_result ?? receipt.txExecutionResultName ??
+    String(receipt.txExecutionResult ?? 'UNKNOWN');
 }
 export function succeeded(receipt) {
   return ['SUCCESS', 'FINISHED_WITH_RETURN'].includes(execution(receipt));

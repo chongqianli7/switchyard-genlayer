@@ -7,7 +7,7 @@ const $ = id => document.getElementById(id);
 const el = (tag, content) => Object.assign(document.createElement(tag), { textContent: content });
 const button = (name, action) => Object.assign(el('button', name), { onclick: action });
 const same = (a, b) => a?.toLowerCase() === b?.toLowerCase();
-let wallet, trial, trialId, active = 0n, busy = false;
+let wallet, trial, trialId, deskRevision = 0n, active = 0n, busy = false;
 const demo = [];
 const providers = new Map();
 const address = deployment.address;
@@ -36,7 +36,7 @@ function showTrial() {
     PROMOTED: 'Promoted revision. The desk can dispatch if this revision is still active.',
     REJECTED: 'At least one expected route failed. The active revision is unchanged.' };
   for (const [key, value] of Object.entries({ Owner: trial.owner, Candidate: trial.candidate,
-    Status: trial.status, 'Base revision': String(trial.base_revision), 'Next step': next[trial.status] })) {
+    Status: trial.status, 'Base revision': String(trial.base_revision), 'Active revision': deskRevision ? '#' + deskRevision : 'None', 'Next step': next[trial.status] })) {
     fields.append(el('dt', key), el('dd', value));
   }
   target.append(el('h3', 'Trial #' + trialId), fields);
@@ -75,7 +75,10 @@ async function refresh(selected) {
   const [trials, tickets] = (await read(address, 'totals')).map(BigInt);
   trialId = selected === 0n ? trials : selected ?? (trialId || trials);
   trial = trialId ? await read(address, 'get_trial', [trialId]) : null;
-  active = wallet ? BigInt(await read(address, 'active_revision', [wallet.address])) : 0n;
+  deskRevision = trial ? BigInt(await read(address, 'active_revision', [trial.owner])) : 0n;
+  active = wallet ? (trial && same(wallet.address, trial.owner) ? deskRevision :
+    BigInt(await read(address, 'active_revision', [wallet.address]))) : 0n;
+  $('route-form').querySelector('button').disabled = !active;
   $('revision').textContent = active ? 'Dispatch with active revision #' + active : 'Connect a desk with a promoted revision to dispatch.';
   showTrial();
   const ticketIds = Array.from({length: Number(tickets > 10n ? 10n : tickets)}, (_, index) => tickets - BigInt(index));
@@ -103,10 +106,16 @@ async function identify() {
   const current = wallet;
   if (!current) $('identity').textContent = 'Read-only visitor';
   else {
+    const prefix = current.mode + ' · ' + current.address;
+    $('identity').textContent = prefix + ' · Reading network and balance';
     const network = current.provider ? Number(await current.provider.request({method:'eth_chainId'})) : chain.id;
-    const balance = await reader.getBalance({address:current.address});
-    if (current === wallet) $('identity').textContent = current.mode + ' · ' + current.address + ' · Chain ' + network +
-      ' · ' + formatEther(balance) + ' test GEN' + (network !== chain.id ? ' · Switch network before writing' : '');
+    const networkText = ' · Chain ' + network + (network !== chain.id ? ' · Switch network before writing' : '');
+    try {
+      const balance = await reader.getBalance({address:current.address});
+      if (current === wallet) $('identity').textContent = prefix + networkText + ' · ' + formatEther(balance) + ' test GEN';
+    } catch {
+      if (current === wallet) $('identity').textContent = prefix + networkText + ' · Balance unavailable';
+    }
   }
   await refresh();
 }

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<script type="module" crossorigin src="./assets/index-BelsEFMk.js"></script>
+<link rel="stylesheet" crossorigin href="./assets/index-DJH5lp6u.css">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Switchyard · Agent routing trials</title>
+<header><a href="./">SWITCHYARD</a><span>STABLE STUDIONET / 61999</span><button id="wallet-open">Connect Wallet</button></header>
+<main>
+<section class="hero">
+<div><p class="eyebrow">AGENT ROUTING / REGRESSION DESK</p><h1>Prove the route<br>before the switch.</h1><p>Rehearse a candidate playbook against known support tickets. Only a clean trial can replace the active routing agent.</p></div>
+<figure aria-label="Routing lanes"><span>Incoming ticket</span><i></i><div><b>Incident</b><b>Support</b><b>Review</b></div></figure>
+</section>
+<section class="bench">
+<nav aria-label="Workspace"><button data-panel="records">Trial ledger</button><button data-panel="open">New trial</button><button data-panel="route">Route a ticket</button></nav>
+<p id="identity">Read-only visitor</p>
+<div id="status" role="status"></div>
+<div id="records" class="panel"><div class="row"><h2>Trial ledger</h2><button id="refresh">Refresh chain</button></div><label>Trial ID <input id="lookup" type="number" min="1" placeholder="Latest trial"></label><button id="inspect">Load trial</button><article id="trial"></article><div id="actions"></div><h3>Dispatched tickets</h3><div id="tickets"></div></div>
+<div id="open" class="panel" hidden><h2>Lock a regression trial</h2><form id="open-form">
+<label>Candidate wallet<input name="candidate" required pattern="0x[0-9a-fA-F]{40}"></label>
+<label>Incident sample<textarea name="incident" minlength="8" maxlength="250" required>All customers receive server errors and cannot sign in.</textarea></label>
+<label>Support sample<textarea name="support" minlength="8" maxlength="250" required>Where can I download last month's invoice?</textarea></label>
+<button>Open trial</button></form></div>
+<div id="route" class="panel" hidden><h2>Route a ticket</h2><p id="revision"></p><form id="route-form"><label>Synthetic ticket (visible on-chain)<textarea name="ticket" required minlength="8" maxlength="250"></textarea></label><button>Dispatch</button></form></div>
+</section>
+</main>
+<dialog id="wallet"><form method="dialog" class="row"><h2>Wallet</h2><button aria-label="Close wallet options">Close</button></form><div id="providers"></div><h3>Demo / Test Wallet</h3><p>Demo keys live in this page session. Use test GEN only.</p><div id="demo"></div><button id="switch">Switch to Studionet</button> <button id="disconnect">Disconnect</button></dialog>
+</html>

@@ -5,7 +5,8 @@
   "scripts": {
     "build": "vite build --base=./",
     "dev": "vite",
-    "test": "python -m unittest discover -s tests -v"
+    "test": "python -m unittest discover -s tests -v",
+    "verify:readback": "node scripts/verify-readback.mjs"
   },
   "license": "ISC",
   "type": "module",

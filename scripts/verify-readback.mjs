@@ -9,6 +9,7 @@ assert.equal(chain.id, 61999, 'Readback must target Stable Studionet 61999');
 assert.match(address, /^0x[0-9a-fA-F]{40}$/);
 
 const [trialTotal, ticketTotal] = (await read(address, 'totals')).map(BigInt);
+console.log('Live Studionet counters:', { trialTotal: String(trialTotal), ticketTotal: String(ticketTotal) });
 assert(trialTotal >= 3n, 'Expected the three recorded trials');
 assert(ticketTotal >= 2n, 'Expected both dispatch records');
 

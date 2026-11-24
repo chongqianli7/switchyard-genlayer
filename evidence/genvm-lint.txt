@@ -1,0 +1,6 @@
+
+✓ Lint passed (3 checks)
+✓ Validation passed
+  Contract: Switchyard
+  Methods: 8 (4 view, 4 write)
+be115ed882cec5305680d073d82575a39984145ee3e1247773d2cebef14e9312  contracts/switchyard.py

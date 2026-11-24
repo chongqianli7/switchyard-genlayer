@@ -38,7 +38,7 @@ assert.equal(tickets['2'][3], 'INCIDENT');
 const transactionLabels = [
   'deploy', 'open_1', 'unauthorized_submission', 'submit_1', 'evaluate_1',
   'open_2', 'submit_2', 'evaluate_2', 'dispatch_trial_open',
-  'dispatch_trial_submit', 'dispatch_trial_evaluate', 'stale_route', 'route_active'
+  'dispatch_trial_submit', 'dispatch_trial_evaluate', 'stale_route_trial_3', 'route_active_trial_3'
 ];
 const receipts = {};
 for (const label of transactionLabels) {
